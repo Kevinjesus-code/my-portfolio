@@ -99,13 +99,14 @@ const CardCertificate = ({ certificate }: CardCertificateProps) => {
               className={Styles.closeBtn}
               onClick={() => setShowModal(false)}
             >
-              <X size={20} />
+              <X size={40} />
             </button>
           </div>
           <iframe
             className={Styles.pdfViewer}
-            src={certificate.pdfUrl}
+            src={`${certificate.pdfUrl}#toolbar=0`}
             title="Certificado PDF"
+          
           />
         </div>
       )}

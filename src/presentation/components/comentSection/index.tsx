@@ -34,8 +34,6 @@ const CommentsSection = () => {
     createdAt: new Date("2025-10-26").toISOString(),
     isPinned: true,
   };
-
-  // Cargar comentarios al montar el componente
   useEffect(() => {
     loadComments();
   }, []);

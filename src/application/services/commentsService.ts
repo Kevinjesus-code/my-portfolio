@@ -29,11 +29,14 @@ export const getComments = async (): Promise<Comment[]> => {
       const errorText = await res.text();
       console.error('Error response:', errorText);
       throw new Error(`Error al obtener comentarios: ${res.status}`);
+    }else{
+       const data = await res.json();
+        return data;
     }
     
-    const data = await res.json();
+   
     
-    return data;
+   
   } catch (error) {
     console.error('Error en getComments:', error);
     throw error;
