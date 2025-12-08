@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Home, Portfolio, AboutMe, Contact } from "../ui";
 import { DSANavBar } from "../components";
+import { useComments } from "../hooks/useComments";
 import "./App.css";
 
 function App() {
   const [page, setPage] = useState(0);
+  const commentsData = useComments();
+
   const renderPage = () => {
     switch (page) {
       case 0:
@@ -14,7 +17,7 @@ function App() {
       case 2:
         return <Portfolio />;
       case 3:
-        return <Contact />;
+        return <Contact commentsData={commentsData} />;
       default:
         return <Home setPage={setPage} />;
     }

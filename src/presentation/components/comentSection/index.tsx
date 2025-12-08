@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Styles from "./comentSection.module.css";
 import {
   DSAInputForm,
@@ -9,51 +9,32 @@ import {
 } from "..";
 import { MessageSquare } from "lucide-react";
 import {
-  getComments,
   createComment,
   uploadImage,
   type Comment,
-} from "../../../application/services/commentsService"; // ajusta la ruta
+} from "../../../application/services/commentsService";
 
-const CommentsSection = () => {
+interface CommentsSectionProps {
+  commentsData?: {
+    comments: Comment[];
+    setComments: (comments: Comment[]) => void;
+    isLoading: boolean;
+    error: string | null;
+    welcomeComment: Comment;
+  };
+}
+
+const CommentsSection = ({ commentsData }: CommentsSectionProps) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Comentario de bienvenida pinned
-  const welcomeComment: Comment = {
-    id: "welcome",
-    name: "Kevin",
-    role: "Admin",
-    message:
-      "Every comment helps me grow as a developer. Share your thoughts, suggestions, or ideas - let's learn together!",
-    createdAt: new Date("2025-10-26").toISOString(),
-    isPinned: true,
-  };
-  useEffect(() => {
-    loadComments();
-  }, []);
-
-  const loadComments = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const data = await getComments();
-      // Combinar comentario de bienvenida con los del backend
-      setComments([welcomeComment, ...data]);
-    } catch (err) {
-      setError("Error al cargar comentarios");
-      console.error(err);
-      // Mostrar al menos el comentario de bienvenida si falla
-      setComments([welcomeComment]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // Usar los datos del hook o valores por defecto
+  const comments = commentsData?.comments ?? [];
+  const setComments = commentsData?.setComments ?? (() => {});
+  const isLoading = commentsData?.isLoading ?? false;
 
   const handleSubmit = async () => {
     if (!name.trim() || !message.trim()) {
@@ -82,7 +63,7 @@ const CommentsSection = () => {
       const createdComment = await createComment(newComment);
 
       // Agregar el nuevo comentario DESPUÉS del comentario de bienvenida
-      setComments((prev) => [prev[0], createdComment, ...prev.slice(1)]);
+      setComments([comments[0], createdComment, ...comments.slice(1)]);
 
       // Limpiar el formulario
       setName("");
