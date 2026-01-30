@@ -28,20 +28,20 @@ export const CardsPortfolio: cardProject[] = [
       "/assets/img/logos/css-3.png",
       "/assets/img/logos/js.png",
     ],
-  },
-  {
-    id: 3,
-    title: "Caja Huancayo Redesign",
-    description:
-      "Redesign of Caja Huancayo's website, focused on modernizing its appearance and improving the user experience compared to the official version. It presents service, product, and contact information clearly, with intuitive navigation and a design adapted to different devices, conveying confidence and professionalism.",
-    image: "/assets/img/page3.png",
-    demoUrl: "https://kevinjesus-code.github.io/website-caja-huancayo/",
-    githubUrl: "https://github.com/Kevinjesus-code/website-caja-huancayo",
-    Technologies: [
-      "/assets/img/logos/html-5.png",
-      "/assets/img/logos/css-3.png",
-      "/assets/img/logos/js.png",
-      "/assets/img/logos/Bootstrap.png",
-    ],
-  },
+  }
+  // {
+  //   id: 3,
+  //   title: "Caja Huancayo Redesign",
+  //   description:
+  //     "Redesign of Caja Huancayo's website, focused on modernizing its appearance and improving the user experience compared to the official version. It presents service, product, and contact information clearly, with intuitive navigation and a design adapted to different devices, conveying confidence and professionalism.",
+  //   image: "/assets/img/page3.png",
+  //   demoUrl: "https://kevinjesus-code.github.io/website-caja-huancayo/",
+  //   githubUrl: "https://github.com/Kevinjesus-code/website-caja-huancayo",
+  //   Technologies: [
+  //     "/assets/img/logos/html-5.png",
+  //     "/assets/img/logos/css-3.png",
+  //     "/assets/img/logos/js.png",
+  //     "/assets/img/logos/Bootstrap.png",
+  //   ],
+  // },
 ];
